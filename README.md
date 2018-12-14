@@ -2,11 +2,11 @@
 
 42 filler project
 
-## installing
+## Installation
 
-'''bash
+```bash
 make
-'''
+```
 
 This will result in a .filler file which can be run in the vm
 
@@ -14,16 +14,18 @@ This will result in a .filler file which can be run in the vm
 
 Built with ruby
 
-'''bash
+```bash
 cd resources
 ./filler_vm -f maps/map01 -p1 players/abanlin.filler -p2 players/hcao.filler
-'''
+```
 
 ## Player
 
 Player reads from stdin and echoes move to stdout
 
 ## Visualizer
+
+![visualizer screenshot](assets/visu_screenshot.png)
 
 Built with python3
 
@@ -39,6 +41,8 @@ left: move game backward
 up or +: increment number of steps taken per keypress
 
 down or -: decrement number of steps taken per keypress
+
+r: reset steps
 
 home: go to beginning of game
 
