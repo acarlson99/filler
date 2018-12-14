@@ -67,4 +67,4 @@ cmake-build-debug
 /.obj/
 test*
 *output*
-acarlson.filler
+*.filler
