@@ -6,7 +6,7 @@
 /*   By: acarlson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 13:37:09 by acarlson          #+#    #+#             */
-/*   Updated: 2018/12/11 22:56:45 by acarlson         ###   ########.fr       */
+/*   Updated: 2018/12/14 22:54:13 by acarlson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ void	toast_that_bad_boy(t_filler *info)
 {
 	int	x;
 	int	y;
-	int	i;
 
 	x = 0;
 	y = 0;
-	i = 0;
 	while (y < info->board_h)
 	{
 		while (x < info->board_w)
