@@ -123,7 +123,6 @@ class Game:
         self.gapsize = 1
         self.boxsize = int(BOARD_BOUNDS / ((max(board_w, board_w) + self.gapsize))) - self.gapsize
         self.piece_off_y = BOARD_OFF_Y
-        # self.piece_off_y = board_h * self.boxsize + board_h * self.gapsize + BOARD_OFF_Y
         self.board_max = len(self.game_boards) - 1
         self.inc = 1
         self.final_scores = final_scores
@@ -294,7 +293,7 @@ down or -: decrement number of steps forward or backward
 r: reset steps taken
 home: go to beginning of game
 end: go to end of game
-0-9 + enter: set number of steps to some integer
+0-9 + ret: set number of steps to some integer
 escape or q: quit""")
         self.playing = True
         while self.playing:
