@@ -91,7 +91,7 @@ FILE_PATHS = [
     "/assets/EcksDeeKirbee.png",
     "/assets/ok_hand.png",
     "/assets/tfw_dicked_by_filler.ogg",
-    "/assets/yeet.mp3",
+    "/assets/yeet.ogg",
     "/assets/oof.mp3"
 ]
 
