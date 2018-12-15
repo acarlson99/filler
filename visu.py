@@ -15,53 +15,76 @@ FPS = 30
 GRAY     = (100, 100, 100)
 NAVYBLUE = ( 60,  60, 100)
 WHITE    = (255, 255, 255)
-BLACK    = (  0,  15,   8)
+BLACK    = (  0,   0,   0)
 RED      = (255,   0,   0)
 GREEN    = (  0, 255,   0)
 BLUE     = (  0,   0, 255)
 YELLOW   = (255, 255,   0)
 PURPLE   = (255,   0, 255)
 CYAN     = (  0, 255, 255)
-VIOLET   = (148,   0, 211)
-DGREEN   = ( 19, 111,  99)
-MUSTARD  = (224 ,202,  60)
-ORANGE   = (243,  66,  19)
-DPURPLE  = ( 62,  47,  91)
+VIOLET   = (110,  60, 135)
+DGREEN   = (165, 105, 178)
+MUSTARD  = (229, 137, 100)
+ORANGE   = (206,  90,  57)
+DPURPLE  = ( 41,  50,  65)
 
-BGCOLOR = BLACK
+GREEN    = ( 79, 255, 151)
+DGREEN   = ( 15,  91,  82)
+PINK     = (220,  40,  90)
+DPINK    = (111,  29,  74)
 
-P1_COLOR = VIOLET
-P1_COLOR2 = DGREEN
-P2_COLOR = ORANGE
-P2_COLOR2 = MUSTARD
+# BGCOLOR  = ( 31,  40,  55)
 
-TEXTCOLOR = WHITE
+# P1_COLOR = DGREEN
+# P1_COLOR2 = GREEN
+# P2_COLOR = DPINK
+# P2_COLOR2 = PINK
+# COLOR_DEFAULT = DPURPLE
 
+# TEXTCOLOR = (116, 125, 140)
+# WINNING_TEXT_COLOR = (146, 155, 170)
+
+BGCOLOR  = ( 31,  40,  55)
+
+P1_COLOR = (211,143, 48)
+P1_COLOR2 = (255,202, 68)
+P2_COLOR = (188, 76, 39)
+P2_COLOR2 = (247,101, 44)
 COLOR_DEFAULT = DPURPLE
+
+TEXTCOLOR = (116, 125, 140)
+WINNING_TEXT_COLOR = (146, 155, 170)
 
 WINDOWHEIGHT = 1200
 WINDOWWIDTH = 1200
 
+TEXTSIZE = 30
+
 KEYDELAY = 150
 KEYREPEAT = 5
 
-NAME1_X_OFF = 10
-NAME1_Y_OFF = 10
+NAME1_X_OFF = 100
+NAME1_Y_OFF = 100
 
-NAME2_X_OFF = 10
-NAME2_Y_OFF = 50
+# PIECE_BKG  = ( 26,  35,  50)
+# PIECE_BKG  = ( 36,  45,  60)
+PIECE_BKG  = ( 26,  35,  50)
+# PIECE_VOID = ( 46,  55,  70)
+PIECE_VOID = DPURPLE
+PIECE_FULL = ( 66,  75,  90)
 
-BOARD_OFF_X = 10
-BOARD_OFF_Y = 100
+NAME2_X_OFF = 100
+NAME2_Y_OFF = NAME1_Y_OFF + TEXTSIZE
 
-BOARD_BOUNDS = int(WINDOWHEIGHT / 1.5)
+BOARD_OFF_X = 100
+BOARD_OFF_Y = NAME2_Y_OFF + TEXTSIZE + 10
 
-PIECE_OFF_X = 10
-PIECE_OFF_Y = 300
+BOARD_BOUNDS = int(WINDOWHEIGHT / 1.5) - max(BOARD_OFF_Y, BOARD_OFF_X)
 
-PIECE_BOUNDS = WINDOWHEIGHT - BOARD_BOUNDS - BOARD_OFF_Y
+PIECE_OFF_X = BOARD_OFF_X + BOARD_BOUNDS
+PIECE_OFF_Y = BOARD_OFF_Y
 
-TEXTSIZE = 40
+PIECE_BOUNDS = (WINDOWWIDTH - BOARD_BOUNDS - BOARD_OFF_X) / 2
 
 FILE_PATHS = [
     "/assets/shrek.jpg",
@@ -72,12 +95,14 @@ FILE_PATHS = [
     "/assets/oof.mp3"
 ]
 
+FONT = "Avenir Next"
+
 class Game:
 
     def __init__(self, bgcolor, p1_color, p2_color, keydelay, keyrepeat, fps, p1_name, p2_name, board_w, board_h, game_boards, game_pieces, final_scores, winner):
         pygame.init()
         pygame.font.init()
-        self.game_font = pygame.font.SysFont("halvetica", TEXTSIZE)
+        self.game_font = pygame.font.SysFont(FONT, TEXTSIZE)
         pygame.key.set_repeat(KEYDELAY, KEYREPEAT)
         pygame.display.set_caption(p1_name + ' vs ' + p2_name)
         self.DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
@@ -97,7 +122,8 @@ class Game:
         self.board_index = 0
         self.gapsize = 1
         self.boxsize = int(BOARD_BOUNDS / ((max(board_w, board_w) + self.gapsize))) - self.gapsize
-        self.piece_off_y = board_h * self.boxsize + board_h * self.gapsize + BOARD_OFF_Y
+        self.piece_off_y = BOARD_OFF_Y
+        # self.piece_off_y = board_h * self.boxsize + board_h * self.gapsize + BOARD_OFF_Y
         self.board_max = len(self.game_boards) - 1
         self.inc = 1
         self.final_scores = final_scores
@@ -227,27 +253,25 @@ class Game:
         row = 0
         height = len(self.game_pieces[self.board_index])
         width = len(self.game_pieces[self.board_index][0])
+        pygame.draw.rect(self.DISPLAYSURF, PIECE_BKG, (PIECE_OFF_X, self.piece_off_y, PIECE_BOUNDS, PIECE_BOUNDS))
         piece_size = int(PIECE_BOUNDS / (max(width, height) + self.gapsize)) - self.gapsize
         for line in self.game_pieces[self.board_index]:
             col = 0
             for n in line:
-                if n == '.':
-                    print_color = GRAY
-                elif n == '*':
-                    print_color = WHITE
+                if n == '*':
+                    print_color = PIECE_FULL
                 else:
-                    print_color = GRAY
+                    print_color = PIECE_VOID
                 pygame.draw.rect(self.DISPLAYSURF, print_color, (PIECE_OFF_X + (self.gapsize + piece_size) * col, self.piece_off_y + (self.gapsize + piece_size) * row, piece_size, piece_size))
                 col += 1
             row += 1
         textsurf = self.game_font.render("Size: " + str(height) + 'x' + str(width), True, TEXTCOLOR)
-        self.DISPLAYSURF.blit(textsurf, (PIECE_OFF_X + (self.gapsize + piece_size) * col, self.piece_off_y))
+        self.DISPLAYSURF.blit(textsurf, (PIECE_OFF_X, self.piece_off_y + PIECE_BOUNDS))
 
     def print_score(self):
-        textsurf = self.game_font.render(self.winner + " wins: " + str(self.final_scores[0]) + ' to ' + str(self.final_scores[1]), True, TEXTCOLOR) # TODO: check this
-        textpos = textsurf.get_rect()
-        textpos.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
-        self.DISPLAYSURF.blit(textsurf, textpos)
+        winning_font = pygame.font.SysFont(FONT, int(TEXTSIZE * 1.25))
+        textsurf = winning_font.render(self.winner + " wins: " + str(self.final_scores[0]) + ' to ' + str(self.final_scores[1]), True, WINNING_TEXT_COLOR)
+        self.DISPLAYSURF.blit(textsurf, (PIECE_OFF_X, self.piece_off_y + PIECE_BOUNDS + TEXTSIZE * 2))
 
     def draw(self):
         self.DISPLAYSURF.fill(self.bgcolor)
@@ -319,6 +343,9 @@ def main():
     lines = [n for n in fileinput.input()]
     for n in range(len(lines)):
         lines[n] = lines[n].rstrip()
+    if len(lines) < 8:
+        print("Error")
+        sys.exit()
     p1_name = lines[6][15:len(lines[6]) - 1].split('/')[-1]
     p2_name = lines[8][15:len(lines[8]) - 1].split('/')[-1]
     name_p = re.compile("^\w+\.filler$")
@@ -327,6 +354,9 @@ def main():
     if not name_p.match(p2_name):
         p2_name = '?'
     game_boards, game_pieces = strip_input(lines)
+    if game_boards == [] or game_pieces == []:
+        print("Error")
+        sys.exit()
     board_h = len(game_boards[0])
     board_w = len(game_boards[0][0])
     winning_info = winner(lines[-2], lines[-1])
