@@ -14,9 +14,13 @@ This will result in a .filler file which can be run in the vm
 
 Built with ruby
 
+Maps and precompiled players are in resources/players and resources/maps respectively
+
+Players may not work properly on systems not running macOS High Sierra
+
 ```bash
 cd resources
-./filler_vm -f maps/map01 -p1 players/abanlin.filler -p2 players/hcao.filler
+./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler
 ```
 
 ![vm screenshot](assets/vm_screenshot.png)
@@ -30,8 +34,6 @@ Player reads from stdin and echoes move to stdout
 Built with python3
 
 visu.py reads from stdin and opens a window in which to step through the game
-
-![visualizer screenshot](assets/visu_screenshot.png)
 
 Dependencies:
 * [pygame](https://www.pygame.org/news)
@@ -52,3 +54,5 @@ Navigation:
 * end: go to end of game
 
 * Type a number and press enter to set the current pace to n moves per key press
+
+![visualizer screenshot](assets/visu_screenshot.png)

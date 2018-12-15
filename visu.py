@@ -286,6 +286,16 @@ class Game:
         pygame.display.update()
 
     def run(self):
+        print("""Navigation:
+right: move game forward
+left: move game backward
+up or +: increment number of steps forward or backward
+down or -: decrement number of steps forward or backward
+r: reset steps taken
+home: go to beginning of game
+end: go to end of game
+0-9 + enter: set number of steps to some integer
+escape or q: quit""")
         self.playing = True
         while self.playing:
             self.clock.tick(self.fps)
