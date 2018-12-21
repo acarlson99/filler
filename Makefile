@@ -6,12 +6,12 @@
 #    By: acarlson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/20 15:33:04 by acarlson          #+#    #+#              #
-#    Updated: 2018/12/14 02:09:21 by acarlson         ###   ########.fr        #
+#    Updated: 2018/12/20 22:06:18 by acarlson         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 CC = clang
-NAME = $(USER).filler
+NAME = acarlson.filler
 FILES = main populate_struct line_parsing map_parsing piece_parsing solve_map lstfuncs heatmap heatmap2
 SRCS = srcs/
 OBJDIR = .obj/
