@@ -12,37 +12,7 @@ with contextlib.redirect_stdout(None):
 FPS = 30
 
 #            R    G    B
-GRAY     = (100, 100, 100)
-NAVYBLUE = ( 60,  60, 100)
-WHITE    = (255, 255, 255)
-BLACK    = (  0,   0,   0)
-RED      = (255,   0,   0)
-GREEN    = (  0, 255,   0)
-BLUE     = (  0,   0, 255)
-YELLOW   = (255, 255,   0)
-PURPLE   = (255,   0, 255)
-CYAN     = (  0, 255, 255)
-VIOLET   = (110,  60, 135)
-DGREEN   = (165, 105, 178)
-MUSTARD  = (229, 137, 100)
-ORANGE   = (206,  90,  57)
 DPURPLE  = ( 41,  50,  65)
-
-GREEN    = ( 79, 255, 151)
-DGREEN   = ( 15,  91,  82)
-PINK     = (220,  40,  90)
-DPINK    = (111,  29,  74)
-
-# BGCOLOR  = ( 31,  40,  55)
-
-# P1_COLOR = DGREEN
-# P1_COLOR2 = GREEN
-# P2_COLOR = DPINK
-# P2_COLOR2 = PINK
-# COLOR_DEFAULT = DPURPLE
-
-# TEXTCOLOR = (116, 125, 140)
-# WINNING_TEXT_COLOR = (146, 155, 170)
 
 BGCOLOR  = ( 31,  40,  55)
 
@@ -66,10 +36,7 @@ KEYREPEAT = 5
 NAME1_X_OFF = 100
 NAME1_Y_OFF = 100
 
-# PIECE_BKG  = ( 26,  35,  50)
-# PIECE_BKG  = ( 36,  45,  60)
 PIECE_BKG  = ( 26,  35,  50)
-# PIECE_VOID = ( 46,  55,  70)
 PIECE_VOID = DPURPLE
 PIECE_FULL = ( 66,  75,  90)
 
@@ -322,7 +289,10 @@ def strip_input(lines):
         elif n[:8] == "Plateau ":
             working_board = []
         elif n[:6] == "Piece ":
-            boards.append(working_board)
+            if working_board == []:
+                boards.append([l.lower() for l in boards[-1]])
+            else:
+                boards.append(working_board)
             working_board = []
         elif board_p.match(n):
             working_board.append(n[4::])
