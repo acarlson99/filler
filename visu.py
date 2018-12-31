@@ -290,7 +290,10 @@ def strip_input(lines):
             working_board = []
         elif n[:6] == "Piece ":
             if working_board == []:
-                boards.append([l.lower() for l in boards[-1]])
+                if random.randint(0, 20) == 0:
+                    boards.append(working_board)
+                else:
+                    boards.append([l.lower() for l in boards[-1]])
             else:
                 boards.append(working_board)
             working_board = []

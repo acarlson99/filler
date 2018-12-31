@@ -8,7 +8,7 @@
 make
 ```
 
-This will result in a .filler file which can be run in the vm
+This will result in a *.filler file which can be run in the vm
 
 ## filler_vm
 
@@ -23,7 +23,7 @@ cd resources
 ./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler
 ```
 
-![vm screenshot](assets/vm_screenshot00.png)
+![vm screenshot](screenshots/vm00.png)
 
 ## Player
 
@@ -55,6 +55,6 @@ Navigation:
 
 * Type a number and press enter to set the current pace to n moves per key press
 
-![visualizer screenshot](assets/visu_screenshot00.png)
+![visualizer screenshot map01](screenshots/visu00.png)
 
-![visualizer screenshot](assets/visu_screenshot01.png)
+![visualizer screenshot map02](screenshots/visu01.png)
