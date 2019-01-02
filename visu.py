@@ -322,9 +322,7 @@ def winner(line1, line2):
     return "P1", score1, score2
 
 def main():
-    lines = [n for n in fileinput.input()]
-    for n in range(len(lines)):
-        lines[n] = lines[n].rstrip()
+    lines = [n.rstrip() for n in fileinput.input()]
     if len(lines) < 8:
         print("Error")
         sys.exit()
