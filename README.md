@@ -2,6 +2,8 @@
 
 42 filler project
 
+Developed for macOS High Sierra using clang-902.0.39.1
+
 ## Installation
 
 ```bash
