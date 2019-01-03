@@ -97,8 +97,7 @@ class Game:
         self.isout = 0
         self.rnum = random.randint(0, 100)
         self.counter = 0
-        self.hp_tmp = False
-        self.has_played = False
+        self.playing = False
 
     def events(self):
         for self.event in pygame.event.get():
@@ -109,9 +108,11 @@ class Game:
                     self.quit()
                 if self.event.key == 275: # right
                     pygame.mixer.music.stop()
+                    self.playing = False
                     self.board_index = min(self.board_index + self.inc, self.board_max)
                 if self.event.key == 276: # left
                     pygame.mixer.music.stop()
+                    self.playing = False
                     self.board_index = max(self.board_index - self.inc, 0)
                 if self.event.key == 61 or self.event.key == 273: # + or up
                     self.inc += 1
@@ -124,9 +125,11 @@ class Game:
                     self.counter = 0
                 if self.event.key == 278: # home
                     pygame.mixer.music.stop()
+                    self.playing = False
                     self.board_index = 0
                 if self.event.key == 279: # end
                     pygame.mixer.music.stop()
+                    self.playing = False
                     self.board_index = self.board_max
                 if self.event.unicode in "0123456789" or self.event.unicode == '\x03' or self.event.unicode == '\r' or self.event.unicode == '\n':
                     if self.event.unicode == '0':
@@ -167,16 +170,15 @@ class Game:
             pass
 
     def play_sound(self, path):
-        self.has_played = True
-        try:
-            pygame.mixer.music.load(sys.path[0] + path)
-            pygame.mixer.music.play()
-        except:
-            pass
+        if not self.playing:
+            self.playing = True
+            try:
+                pygame.mixer.music.load(sys.path[0] + path)
+                pygame.mixer.music.play()
+            except:
+                pass
 
     def shrekt(self):
-        if self.has_played:
-            return
         n = self.rnum % (len(FILE_PATHS))
         filename = FILE_PATHS[n]
         image_p = re.compile(".+\.(?:jpg|png)$")
@@ -189,15 +191,12 @@ class Game:
             textrect.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
             self.DISPLAYSURF.blit(textsurf, textrect)
             self.play_sound(filename)
-        self.hp_tmp = True
 
     def display_board(self):
         row = 0
         if self.game_boards[self.board_index] == []:
             self.shrekt()
             return
-        elif self.hp_tmp:
-            self.has_played = True
         for line in self.game_boards[self.board_index]:
             col = 0
             for n in line:
@@ -262,8 +261,8 @@ home: go to beginning of game
 end: go to end of game
 0-9 + ret: set number of steps to some integer
 escape or q: quit""")
-        self.playing = True
-        while self.playing:
+        playing = True
+        while playing:
             self.clock.tick(self.fps)
             self.events()
             self.draw()
