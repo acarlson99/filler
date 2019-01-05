@@ -39,16 +39,16 @@ Built with python3
 
 visu.py reads from stdin and opens a window in which to step through the game
 
-Dependencies:
+### Dependencies:
 * [pygame](https://www.pygame.org/news)
 
-Usage:
+### Usage:
 
 ```bash
 ./filler\_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler | ../visu.py
 ```
 
-Navigation:
+### Navigation:
 * right: move game forward
 
 * left: move game backward
