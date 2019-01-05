@@ -40,6 +40,7 @@ Built with python3
 visu.py reads from stdin and opens a window in which to step through the game
 
 ### Dependencies:
+
 * [pygame](https://www.pygame.org/news)
 
 ### Usage:
@@ -49,6 +50,7 @@ visu.py reads from stdin and opens a window in which to step through the game
 ```
 
 ### Navigation:
+
 * right: move game forward
 
 * left: move game backward
