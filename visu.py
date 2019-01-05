@@ -314,14 +314,14 @@ def main():
     if len(sys.argv) > 1:
         if sys.argv[1] == "--help":
             print("""Navigation:
-right: move game forward
-left: move game backward
-up or +: increment number of steps forward or backward
-down or -: decrement number of steps forward or backward
-r: reset steps taken
-home: go to beginning of game
-end: go to end of game
-0-9 + ret: set number of steps to some integer
+right      : move game forward
+left       : move game backward
+up or +    : increment number of steps forward or backward
+down or -  : decrement number of steps forward or backward
+r          : reset steps per movement
+home       : go to beginning of game
+end        : go to end of game
+0-9 + ret  : set number of steps to some integer
 escape or q: quit""")
             sys.exit()
         else:

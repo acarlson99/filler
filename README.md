@@ -10,15 +10,17 @@ Developed for macOS High Sierra using clang-902.0.39.1
 make
 ```
 
-This will result in a *.filler file which can be run in the vm
+This will result in a \*.filler file which can be run in the vm
 
-## filler_vm
+## filler\_vm
 
 Built with ruby
 
 Maps and precompiled players are in resources/players and resources/maps respectively
 
 Players may not work properly on systems not running macOS High Sierra
+
+Usage:
 
 ```bash
 cd resources
@@ -39,6 +41,12 @@ visu.py reads from stdin and opens a window in which to step through the game
 
 Dependencies:
 * [pygame](https://www.pygame.org/news)
+
+Usage:
+
+```bash
+./filler\_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler | ../visu.py
+```
 
 Navigation:
 * right: move game forward
