@@ -70,7 +70,7 @@ class Game:
         pygame.init()
         pygame.font.init()
         self.game_font = pygame.font.SysFont(FONT, TEXTSIZE)
-        pygame.key.set_repeat(KEYDELAY, KEYREPEAT)
+        pygame.key.set_repeat(keydelay, keyrepeat)
         pygame.display.set_caption(p1_name + ' vs ' + p2_name)
         self.DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
         self.clock = pygame.time.Clock()
@@ -251,16 +251,6 @@ class Game:
         pygame.display.update()
 
     def run(self):
-        print("""Navigation:
-right: move game forward
-left: move game backward
-up or +: increment number of steps forward or backward
-down or -: decrement number of steps forward or backward
-r: reset steps taken
-home: go to beginning of game
-end: go to end of game
-0-9 + ret: set number of steps to some integer
-escape or q: quit""")
         playing = True
         while playing:
             self.clock.tick(self.fps)
@@ -321,7 +311,24 @@ def winner(line1, line2):
     return "P1", score1, score2
 
 def main():
-    lines = [n.rstrip() for n in fileinput.input()]
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--help":
+            print("""Navigation:
+right: move game forward
+left: move game backward
+up or +: increment number of steps forward or backward
+down or -: decrement number of steps forward or backward
+r: reset steps taken
+home: go to beginning of game
+end: go to end of game
+0-9 + ret: set number of steps to some integer
+escape or q: quit""")
+            sys.exit()
+        else:
+            print("illegal option: %s" % (sys.argv[1]))
+            print("usage: ./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler | ../visu.py")
+            sys.exit(1)
+    lines = [n.rstrip() for n in sys.stdin]
     if len(lines) < 8:
         print("Error")
         sys.exit()
