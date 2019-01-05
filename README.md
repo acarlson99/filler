@@ -20,7 +20,7 @@ Maps and precompiled players are in resources/players and resources/maps respect
 
 Players may not work properly on systems not running macOS High Sierra
 
-Usage:
+### Usage:
 
 ```bash
 cd resources
