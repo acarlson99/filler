@@ -326,7 +326,7 @@ escape or q: quit""")
             sys.exit()
         else:
             print("illegal option: %s" % (sys.argv[1]))
-            print("usage: ./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler | ../visu.py")
+            print("usage: ./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 players/hcao.filler | ../visu.py [--help]")
             sys.exit(1)
     lines = [n.rstrip() for n in sys.stdin]
     if len(lines) < 8:
